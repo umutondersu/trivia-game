@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* https://www.realtimecolors.com/?colors=f6eaec-0e0608-9fd5c9-13172b-55b4a0&fonts=Poppins-Poppins */
+@layer base {
+	:root {
+		--text: #15090b;
+		--background: #f9f1f3;
+		--primary: #2a6054;
+		--secondary: #d4d8ec;
+		--accent: #4baa95;
+	}
+	.dark {
+		--text: #f6eaec;
+		--background: #0e0608;
+		--primary: #9fd5c9;
+		--secondary: #13172b;
+		--accent: #55b4a0;
+	}
+}
