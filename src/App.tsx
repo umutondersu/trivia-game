@@ -14,7 +14,7 @@ export const toggleThemeAtom = atom(
 		set(themeAtom, theme === "light" ? "dark" : "light");
 	}
 );
-// 	const [theme, toggleTheme] = useAtom(toggleThemeAtom)
+// 	const toggleTheme = useAtom(toggleThemeAtom)[1];
 
 export default function App() {
 	// For theme

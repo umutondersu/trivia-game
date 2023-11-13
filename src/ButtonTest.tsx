@@ -4,7 +4,8 @@ import { useAtom } from "jotai";
 import { toggleThemeAtom } from "./App";
 
 export default function ButtonTest() {
-	const [theme, toggleTheme] = useAtom(toggleThemeAtom);
+	const toggleTheme = useAtom(toggleThemeAtom)[1];
+
 	return (
 		<>
 			<h1>Test</h1>
