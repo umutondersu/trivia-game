@@ -18,7 +18,7 @@ module.exports = {
 		extend: {
 			colors: {
 				def: "var(--text)",
-				bg: "var(--background)",
+				bg: "var(--bg)",
 				primary: "var(--primary)",
 				secondary: "var(--secondary)",
 				accent: "var(--accent)",

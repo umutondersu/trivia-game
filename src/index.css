@@ -35,7 +35,7 @@
 		--radius: 0.5rem;
 
 		--text: #15090b;
-		--background: #f9f1f3;
+		--bg: #f9f1f3;
 		--primary: #2a6054;
 		--secondary: #d4d8ec;
 		--accent: #4baa95;
@@ -71,7 +71,7 @@
 		--ring: 212.7 26.8% 83.9%;
 
 		--text: #f6eaec;
-		--background: #0e0608;
+		--bg: #0e0608;
 		--primary: #9fd5c9;
 		--secondary: #13172b;
 		--accent: #55b4a0;
@@ -85,21 +85,6 @@
 	body {
 		@apply bg-background text-foreground;
 	}
-}
-
-:root {
-	--text: #15090b;
-	--background: #f9f1f3;
-	--primary: #2a6054;
-	--secondary: #d4d8ec;
-	--accent: #4baa95;
-}
-.dark {
-	--text: #f6eaec;
-	--background: #0e0608;
-	--primary: #9fd5c9;
-	--secondary: #13172b;
-	--accent: #55b4a0;
 }
 
 .dark-bg {
