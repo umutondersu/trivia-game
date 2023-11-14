@@ -39,6 +39,7 @@ function Theme({ children }: { children: React.ReactNode }) {
 	return (
 		//TODO: Test Tailwind Gradient
 		//TODO: Light Mode Flashes on load for a second (maybe use a loading screen)
+		//TODO: background image is not working on routes
 		<div
 			style={{
 				backgroundImage:
