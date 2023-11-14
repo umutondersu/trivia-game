@@ -10,16 +10,18 @@ export default function App() {
 	// For theme
 	const toggleTheme = useAtom(toggleThemeAtom)[1];
 	return (
-		<Theme>
-			<h1 className="text-def">App</h1>
-			<Button className="text-def bg-bg" onClick={toggleTheme}>
-				Toggle Theme
-			</Button>
+		<>
+			<Theme>
+				<h1 className="text-def">App</h1>
+				<Button className="text-def bg-bg" onClick={toggleTheme}>
+					Toggle Theme
+				</Button>
+			</Theme>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/quiz" element={<Question />} />
 				<Route path="/score" element={<Score />} />
 			</Routes>
-		</Theme>
+		</>
 	);
 }
