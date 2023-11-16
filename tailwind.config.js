@@ -17,11 +17,12 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				def: "var(--text)",
-				bg: "var(--bg)",
-				primary: "var(--primary)",
-				secondary: "var(--secondary)",
-				accent: "var(--accent)",
+				bgfirst: "hsl(var(--background-body))",
+				bgsecond: "hsl(var(--secondary-body))",
+				bgthird: "hsl(var(--accent-body))",
+				primary: "hsl(var(--primary))",
+				secondary: "hsl(var(--secondary))",
+				accent: "hsl(var(--accent))",
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",

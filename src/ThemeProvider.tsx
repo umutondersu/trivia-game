@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useAtom, atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { theme } from "./lib/definitions";
-import blurryGradientHaikei from "./assets/blurry-gradient-haikei.svg";
 
 const themeAtom = atomWithStorage<theme>("THEME", undefined);
 
@@ -15,8 +14,7 @@ export const toggleThemeAtom = atom(
 );
 // 	const toggleTheme = useAtom(toggleThemeAtom)[1];
 
-function Theme({ children }: { children: React.ReactNode }) {
-	// For theme
+function ThemeProvider({ children }: { children: React.ReactNode }) {
 	const [theme, setTheme] = useAtom(themeAtom);
 
 	useEffect(() => {
@@ -35,22 +33,8 @@ function Theme({ children }: { children: React.ReactNode }) {
 			document.documentElement.classList.remove("dark");
 		}
 	}, [theme]);
-	// For theme
-	return (
-		//TODO: Test Tailwind Gradient
-		//TODO: Light Mode Flashes on load for a second (maybe use a loading screen)
-		<div
-			style={{
-				backgroundImage:
-					theme === "light" ? `url(${blurryGradientHaikei})` : "none",
-				backgroundColor: "var(--bg)",
-				backgroundSize: "cover",
-				height: "100vh",
-				width: "100vw",
-			}}>
-			{children}
-		</div>
-	);
+	//TODO: Light Mode Flashes on load for a second (maybe use a loading screen)
+	return <>{children}</>;
 }
 
-export default Theme;
+export default ThemeProvider;
