@@ -11,9 +11,7 @@ export default function App() {
 	return (
 		<>
 			<h1>App</h1>
-			<Button onClick={toggleTheme} className="bg-background">
-				Toggle Theme
-			</Button>
+			<Button onClick={toggleTheme}>Toggle Theme</Button>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/quiz" element={<Question />} />
