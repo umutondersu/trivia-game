@@ -1,4 +1,3 @@
-import { useAtom } from "jotai";
 import { Button } from "./components/ui/button";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
