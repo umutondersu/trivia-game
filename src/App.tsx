@@ -6,12 +6,19 @@ import Score from "./pages/Score";
 import useThemeAtom from "./hooks/useThemeAtom";
 
 export default function App() {
-	const [_, toggleTheme] = useThemeAtom();
+	const [theme, toggleTheme] = useThemeAtom();
 
 	return (
 		<>
-			<h1>App</h1>
-			<Button onClick={toggleTheme}>Toggle Theme</Button>
+			<Button
+				onClick={toggleTheme}
+				className="w-10 h-10 rounded-full p-0 m-3 fixed top-0 right-0">
+				{theme === "light" ? (
+					<img src="src/assets/moon.svg" alt="moon" />
+				) : (
+					<img src="src/assets/sun.svg" alt="sun" />
+				)}
+			</Button>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/quiz" element={<Question />} />
