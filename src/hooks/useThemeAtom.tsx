@@ -7,6 +7,7 @@ export default function useThemeAtom(): [theme, () => void] {
 	const [theme, setTheme] = useAtom(themeAtom);
 
 	useEffect(() => {
+		if (localStorage.getItem("THEME")) return;
 		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			setTheme("dark");
 		}
