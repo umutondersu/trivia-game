@@ -1,7 +1,7 @@
 import { Button } from "./button";
 import MoonIconSrc from "../../assets/moon.svg";
 import SunIconSrc from "../../assets/sun.svg";
-import { theme } from "../../lib/definitions";
+import { theme } from "../../lib/types";
 
 function ToggleButton({
 	theme,
