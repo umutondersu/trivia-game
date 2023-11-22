@@ -10,7 +10,7 @@ function LandingPage() {
 	return (
 		<div className="flex flex-col justify-around h-screen overflow-hidden">
 			<h1 className="self-center font-extrabold text-2xl">Welcome!</h1>
-			<Card className="mx-60 -mt-20 lg:mx-20 border-border">
+			<Card className="mx-60 -mt-20 md:mx-20 border-border">
 				<CardHeader>
 					<CardTitle>Here is how to play:</CardTitle>
 				</CardHeader>
