@@ -1,4 +1,4 @@
-import QuizForm from "../components/ui/QuizForm";
+import QuizForm from "../components/ui/LandingPage/QuizForm";
 import {
 	Card,
 	CardContent,

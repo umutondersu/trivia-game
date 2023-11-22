@@ -1,4 +1,4 @@
-import { Button } from "./button";
+import { Button } from "../button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -9,16 +9,16 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "./form";
+} from "../form";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "./select";
-import { Input } from "./input";
-import { FormSchema, TFormValues } from "../../lib/types";
+} from "../select";
+import { Input } from "../input";
+import { FormSchema, TFormValues } from "../../../lib/types";
 
 function QuizForm() {
 	const form = useForm<TFormValues>({
