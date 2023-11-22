@@ -19,7 +19,6 @@ import {
 } from "./select";
 import { Input } from "./input";
 import { FormSchema, TFormValues } from "../../lib/types";
-import { cn } from "../../lib/utils";
 
 function QuizForm() {
 	const form = useForm<TFormValues>({
@@ -67,9 +66,6 @@ function QuizForm() {
 											</SelectItem>
 										</SelectContent>
 									</Select>
-									<FormDescription>
-										Please choose a difficulty
-									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -163,9 +159,6 @@ function QuizForm() {
 											</SelectItem>
 										</SelectContent>
 									</Select>
-									<FormDescription>
-										Please choose a category
-									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -188,7 +181,9 @@ function QuizForm() {
 							)}
 						/>
 					</div>
-					<Button className="self-center p-8 text-lg" type="submit">
+					<Button
+						className="self-center p-8 text-lg mb-5 -mt-5"
+						type="submit">
 						Start the Game
 					</Button>
 				</form>
