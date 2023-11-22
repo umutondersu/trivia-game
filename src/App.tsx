@@ -19,7 +19,7 @@ export default function App() {
 			<a
 				href="https://github.com/umutondersu"
 				target="_blank"
-				className="absolute bottom-0 right-[46.9%] mb-2 text-muted group">
+				className="absolute bottom-0 w-full mb-2 text-center text-muted group">
 				Made by{" "}
 				<span className="group-hover:text-muted-foreground group-hover:underline transition-colors ease-linear duration-100 delay-0">
 					Umut
