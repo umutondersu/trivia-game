@@ -19,25 +19,10 @@ import {
 	SelectValue,
 } from "./select";
 import { Input } from "./input";
-
-const FormSchema = z.object({
-	difficulty: z.string({
-		required_error: "Required",
-	}),
-	category: z.string({
-		required_error: "Required",
-	}),
-	numberOfQuestions: z
-		.string()
-		.transform((value) => (value === "" ? NaN : Number(value)))
-		.refine((value) => !isNaN(value), { message: "Required" })
-		.refine((value) => value >= 1 && value <= 50, {
-			message: "Must be between 1 and 50",
-		}),
-});
+import { FormSchema, TFormValues } from "../../lib/types";
 
 function QuizForm() {
-	const form = useForm<z.infer<typeof FormSchema>>({
+	const form = useForm<TFormValues>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			// @ts-ignore
@@ -45,7 +30,7 @@ function QuizForm() {
 		},
 	});
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
+	function onSubmit(data: TFormValues) {
 		console.log(data);
 	}
 
