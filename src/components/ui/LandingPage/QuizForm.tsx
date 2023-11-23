@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -19,8 +18,15 @@ import {
 } from "../select";
 import { Input } from "../input";
 import { FormSchema, TFormValues } from "../../../lib/types";
+import { quizFormAtom } from "../../../lib/atoms";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
+import { startTransition } from "react";
 
 function QuizForm() {
+	const [_, setQuizForm] = useAtom(quizFormAtom);
+	const navigate = useNavigate();
+
 	const form = useForm<TFormValues>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -30,7 +36,10 @@ function QuizForm() {
 	});
 
 	function onSubmit(data: TFormValues) {
-		console.log(data);
+		startTransition(() => {
+			setQuizForm(data);
+			navigate("/quiz");
+		});
 	}
 
 	return (
@@ -77,8 +86,14 @@ function QuizForm() {
 								<FormItem className="basis-2/12">
 									<FormLabel>Category</FormLabel>
 									<Select
-										onValueChange={field.onChange}
-										defaultValue={field.value}>
+										onValueChange={(value) =>
+											field.onChange(Number(value))
+										}
+										defaultValue={
+											field.value
+												? field.value.toString()
+												: ""
+										}>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder="Select a category" />

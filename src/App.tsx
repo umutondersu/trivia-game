@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import Question from "./pages/Question";
+import Questions from "./pages/Questions";
 import Score from "./pages/Score";
 import useThemeAtom from "./hooks/useThemeAtom";
 import ToggleButton from "./components/ui/ToggleButton";
@@ -13,7 +13,7 @@ export default function App() {
 			<ToggleButton theme={theme} toggleTheme={toggleTheme} />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
-				<Route path="/quiz" element={<Question />} />
+				<Route path="/quiz" element={<Questions />} />
 				<Route path="/score" element={<Score />} />
 			</Routes>
 			<a

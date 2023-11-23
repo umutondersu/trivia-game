@@ -6,7 +6,7 @@ export const FormSchema = z.object({
 	difficulty: z.string({
 		required_error: "Required",
 	}),
-	category: z.string({
+	category: z.number({
 		required_error: "Required",
 	}),
 	numberOfQuestions: z
@@ -19,28 +19,16 @@ export const FormSchema = z.object({
 });
 export type TFormValues = z.infer<typeof FormSchema>;
 
-export const CategoryMap = {
-	1: "Entertainment: Books",
-	2: "Entertainment: Film",
-	3: "Entertainment: Music",
-	4: "Entertainment: Musicals & Theatres",
-	5: "Entertainment: Television",
-	6: "Entertainment: Video Games",
-	7: "Entertainment: Board Games",
-	8: "Science & Nature",
-	9: "Science: Computers",
-	10: "Science: Mathematics",
-	11: "Mythology",
-	12: "Sports",
-	13: "Geography",
-	14: "History",
-	15: "Politics",
-	16: "Art",
-	17: "Celebrities",
-	18: "Animals",
-	19: "Vehicles",
-	20: "Entertainment: Comics",
-	21: "Science: Gadgets",
-	22: "Entertainment: Japanese Anime & Manga",
-	23: "Entertainment: Cartoon & Animations",
-};
+export const QuizSchema = z.object({
+	response_code: z.number(),
+	results: z.array(
+		z.object({
+			type: z.string(),
+			difficulty: z.string(),
+			category: z.string(),
+			question: z.string(),
+			correct_answer: z.string(),
+			incorrect_answers: z.tuple([z.string(), z.string(), z.string()]),
+		})
+	),
+});
