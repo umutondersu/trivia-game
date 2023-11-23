@@ -39,7 +39,7 @@ function QuizForm() {
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-col">
-					<div className="flex flex-initial justify-evenly mb-20 -mt-20 -mx-10">
+					<div className="flex flex-auto flex-col md:flex-row mt-3 justify-evenly mb-20 md:-mt-20 md:-mx-10 mx-10">
 						<FormField
 							control={form.control}
 							name="difficulty"
@@ -182,7 +182,7 @@ function QuizForm() {
 						/>
 					</div>
 					<Button
-						className="self-center p-8 text-lg mb-5 -mt-5"
+						className="self-center p-8 text-lg md:mb-5 mb-16 -mt-5"
 						type="submit">
 						Start the Game
 					</Button>
