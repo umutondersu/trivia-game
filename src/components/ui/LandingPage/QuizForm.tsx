@@ -196,6 +196,7 @@ function QuizForm() {
 							)}
 						/>
 					</div>
+					{/* TODO: Add a randomizer button */}
 					<Button
 						className="self-center p-8 text-lg md:mb-5 mb-16 -mt-5"
 						type="submit">

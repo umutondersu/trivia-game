@@ -12,6 +12,7 @@ export const quizFormAtom = atom<z.infer<typeof FormSchema>>({
 	numberOfQuestions: NaN,
 });
 
+// TODO: make it with atomwithstorage
 const TokenAtom = atom(async () => {
 	try {
 		const token = await fetch(
@@ -42,6 +43,7 @@ export const QuizAtom = atom(async (get) => {
 	const { difficulty, category, numberOfQuestions } = get(quizFormAtom);
 	try {
 		const token = await get(TokenAtom);
+		console.log(token);
 		const response = await fetch(
 			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`
 		);
