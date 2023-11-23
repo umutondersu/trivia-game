@@ -8,8 +8,10 @@ import {
 
 function LandingPage() {
 	return (
-		<div className="flex flex-col justify-around min-h-screen w-screen md:overflow-clip overflow-y-scroll">
-			<h1 className="self-center font-extrabold text-2xl">Welcome!</h1>
+		<div className="flex flex-col justify-around min-h-screen w-screen md:overflow-clip">
+			<h1 className="self-center font-extrabold text-2xl sm:mt-0 mt-2">
+				Welcome!
+			</h1>
 			<Card className="md:-mt-20 mt-5 sm:mx-20 mx-4 border-border">
 				<CardHeader>
 					<CardTitle>How to play:</CardTitle>
