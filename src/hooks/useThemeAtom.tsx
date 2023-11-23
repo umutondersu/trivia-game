@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { theme } from "../lib/types";
-import { themeAtom } from "../lib/atom";
+import { themeAtom } from "../lib/atoms";
 
 export default function useThemeAtom(): [theme, () => void] {
 	const [theme, setTheme] = useAtom(themeAtom);
