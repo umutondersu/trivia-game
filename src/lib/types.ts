@@ -32,3 +32,9 @@ export const QuizSchema = z.object({
 		})
 	),
 });
+
+export const TokenSchema = z.object({
+	response_code: z.number(),
+	response_message: z.string(),
+	token: z.string(),
+});
