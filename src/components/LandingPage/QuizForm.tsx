@@ -1,4 +1,4 @@
-import { Button } from "../button";
+import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -8,17 +8,17 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../form";
+} from "../ui/form";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "../select";
-import { Input } from "../input";
-import { FormSchema, TFormValues } from "../../../lib/types";
-import { quizFormAtom } from "../../../lib/atoms";
+} from "../ui/select";
+import { Input } from "../ui/input";
+import { FormSchema, TFormValues } from "../../lib/definitions";
+import { quizFormAtom } from "../../lib/atoms/LandingPage";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { startTransition } from "react";

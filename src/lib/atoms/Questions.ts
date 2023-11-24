@@ -1,16 +1,7 @@
+import { Getter, atom } from "jotai";
+import { QuizSchema, TokenSchema } from "../definitions";
+import { quizFormAtom } from "./LandingPage";
 import { atomWithStorage } from "jotai/utils";
-import { type theme, QuizSchema, TokenSchema } from "./types";
-import { FormSchema } from "./types";
-import { z } from "zod";
-import { atom } from "jotai";
-
-export const themeAtom = atomWithStorage<theme>("THEME", "light");
-
-export const quizFormAtom = atom<z.infer<typeof FormSchema>>({
-	difficulty: "",
-	category: NaN,
-	numberOfQuestions: NaN,
-});
 
 // TODO: make it with atomwithstorage
 const TokenAtom = atom(async () => {
@@ -39,7 +30,7 @@ const TokenAtom = atom(async () => {
 	}
 });
 
-export const QuizAtom = atom(async (get) => {
+export const QuizAtom = atomWithStorage("QUIZ", async (get: Getter) => {
 	const { difficulty, category, numberOfQuestions } = get(quizFormAtom);
 	try {
 		const token = await get(TokenAtom);
@@ -76,32 +67,9 @@ export const QuizAtom = atom(async (get) => {
 	}
 });
 
-// Quizatom with zod-fetch
-// export const quizAtom = atom(async (get) => {
-// 	const { difficulty, category, numberOfQuestions } = get(quizFormAtom);
-// 	try {
-// 		const response = await fetchWithZod(
-// 			QuizSchema,
-// 			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple`
-// 		);
-// 		switch (response.response_code) {
-// 			case 1:
-// 				throw new Error(
-// 					"There are no more questions in this category."
-// 				);
-// 			case 2:
-// 				throw new Error("Invalid parameters");
-// 			case 3:
-// 				throw new Error("Token not found");
-// 			case 4:
-// 				throw new Error("Token empty");
-// 			case 5:
-// 				throw new Error("Rate limit exceeded");
-// 		}
-// 		return response.results;
-// 	} catch (error) {
-// 		throw new Error(
-// 			error instanceof Error ? error.message : "Unknown error"
-// 		);
-// 	}
-// });
+// const questionCount = Questions.length;
+// const currentAnswers = [
+// 	...Questions[questionNumber]["incorrect_answers"],
+// 	Questions[questionNumber]["correct_answer"],
+// ];
+// const correctAnswer = Questions[questionNumber]["correct_answer"];

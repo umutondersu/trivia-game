@@ -1,4 +1,5 @@
-import QuizForm from "../components/ui/LandingPage/QuizForm";
+import PageContainer from "../components/PageContainer";
+import QuizForm from "../components/LandingPage/QuizForm";
 import {
 	Card,
 	CardContent,
@@ -8,7 +9,7 @@ import {
 
 function LandingPage() {
 	return (
-		<div className="flex flex-col justify-around min-h-screen w-screen md:overflow-clip">
+		<PageContainer className="justify-around">
 			<h1 className="self-center font-extrabold text-2xl sm:mt-0 mt-2">
 				Welcome!
 			</h1>
@@ -49,7 +50,7 @@ function LandingPage() {
 				</CardContent>
 			</Card>
 			<QuizForm />
-		</div>
+		</PageContainer>
 	);
 }
 
