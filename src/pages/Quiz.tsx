@@ -10,7 +10,7 @@ import AnswerGrid from "../components/Questions/AnswerGrid";
 const QuestionNumberAtom = atom(0);
 const AnsweredAtom = atom(true);
 
-function Questions() {
+function Quiz() {
 	// const Questions = useAtomValue(QuizAtom);
 	const Questions = [
 		{
@@ -55,4 +55,4 @@ function Questions() {
 		</PageContainer>
 	);
 }
-export default Questions;
+export default Quiz;
