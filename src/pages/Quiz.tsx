@@ -44,14 +44,14 @@ function Quiz() {
 
 	return (
 		<PageContainer className="justify-evenly">
-			<Card className="grid place-items-center relative mx-9 top-0 h-40 text-center">
+			<Card className="grid place-items-center relative mx-9 md:top-0 -top-4 md:h-40 h-52 text-center">
 				<CardHeader>
 					<CardTitle>Who was in Paris?</CardTitle>
 				</CardHeader>
 			</Card>
 			<AnswerStatusBar answered={answered} />
 			<AnswerGrid currentAnswers={currentAnswers} />
-			<Progress className="absolute bottom-0" value={0} />
+			<Progress className="absolute bottom-6" value={0} />
 		</PageContainer>
 	);
 }
