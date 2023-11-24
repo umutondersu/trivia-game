@@ -13,7 +13,7 @@ function ToggleButton({
 	return (
 		<Button
 			onClick={toggleTheme}
-			className="w-10 h-10 rounded-full p-0 m-3 fixed top-0 right-0">
+			className="w-10 h-10 rounded-full p-0 m-3 absolute top-0 right-0">
 			<img
 				className="transition-all ease-linear duration-150 active:scale-50 active:translate-y-1"
 				src={theme === "dark" ? SunIconSrc : MoonIconSrc}

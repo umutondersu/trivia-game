@@ -11,7 +11,7 @@ function PageContainer({
 	return (
 		<div
 			className={cn(
-				"flex flex-col min-h-screen w-screen md:overflow-clip",
+				"flex flex-col h-screen w-screen overflow-clip",
 				className
 			)}>
 			{children}

@@ -10,10 +10,10 @@ import {
 function LandingPage() {
 	return (
 		<PageContainer className="justify-around">
-			<h1 className="self-center font-extrabold text-2xl sm:mt-0 mt-2">
+			<h1 className="self-center font-extrabold text-2xl sm:mt-0 sm:mb-0 -mb-24">
 				Welcome!
 			</h1>
-			<Card className="md:-mt-20 mt-5 sm:mx-20 mx-4 border-border">
+			<Card className="md:-mt-20 mt-24 sm:mx-20 mx-4 border-border sm:text-base text-sm">
 				<CardHeader>
 					<CardTitle>How to play:</CardTitle>
 				</CardHeader>
