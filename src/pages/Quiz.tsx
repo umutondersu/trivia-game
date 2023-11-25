@@ -11,7 +11,8 @@ const QuestionNumberAtom = atom(0);
 const AnsweredAtom = atom(true);
 
 function Quiz() {
-	// const Questions = useAtomValue(QuizAtom);
+	const Questionss = useAtomValue(QuizAtom);
+	console.log(Questionss);
 	const Questions = [
 		{
 			type: "multiple",
@@ -44,7 +45,7 @@ function Quiz() {
 
 	return (
 		<PageContainer className="justify-evenly">
-			<Card className="grid place-items-center relative mx-9 md:top-0 -top-4 md:h-40 h-52 text-center">
+			<Card className="grid place-items-center relative md:mx-40 mx-9 md:top-0 -top-4 md:h-40 h-52 text-center">
 				<CardHeader>
 					<CardTitle>Who was in Paris?</CardTitle>
 				</CardHeader>
