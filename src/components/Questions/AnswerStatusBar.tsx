@@ -1,6 +1,10 @@
 import { cn } from "../../lib/utils";
 import Check from "../../assets/circle-check-regular.svg";
-function AnswerStatusBar({ answered }: { answered: boolean }) {
+import { useAtomValue } from "jotai";
+import { AnsweredAtom } from "../../lib/atoms/Questions";
+
+function AnswerStatusBar() {
+	const answered = useAtomValue(AnsweredAtom);
 	return (
 		<div
 			className={cn(

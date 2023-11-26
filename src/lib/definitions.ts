@@ -23,9 +23,9 @@ export const QuizSchema = z.object({
 	response_code: z.number(),
 	results: z.array(
 		z.object({
-			type: z.string(),
-			difficulty: z.string(),
-			category: z.string(),
+			type: z.string().optional(),
+			difficulty: z.string().optional(),
+			category: z.string().optional(),
 			question: z.string(),
 			correct_answer: z.string(),
 			incorrect_answers: z.tuple([z.string(), z.string(), z.string()]),
@@ -33,8 +33,20 @@ export const QuizSchema = z.object({
 	),
 });
 
+export type TQuiz =
+	| {
+			question: string;
+			correct_answer: string;
+			incorrect_answers: [string, string, string];
+	  }[];
+
 export const TokenSchema = z.object({
 	response_code: z.number(),
 	response_message: z.string(),
 	token: z.string(),
 });
+
+export type Tanswers = {
+	text: string;
+	correct: boolean;
+}[];
