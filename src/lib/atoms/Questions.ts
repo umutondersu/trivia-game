@@ -32,11 +32,7 @@ function htmlEntitiesToUtf8(html: string): string {
 	const doc = new DOMParser().parseFromString(html, "text/html");
 	return doc.documentElement.textContent || "";
 }
-console.log(
-	htmlEntitiesToUtf8(
-		"Which famous book is sub-titled &#039;The Modern Prometheus&#039;?"
-	)
-);
+
 async function getQuiz(): Promise<TQuiz> {
 	if (localStorage.getItem("QUIZ"))
 		return JSON.parse(localStorage.getItem("QUIZ") as string);
