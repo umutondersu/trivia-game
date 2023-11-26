@@ -29,8 +29,9 @@ async function getToken(): Promise<string | undefined> {
 }
 
 export default async function getQuiz(): Promise<TQuiz> {
-	if (localStorage.getItem("QUIZ"))
-		return JSON.parse(localStorage.getItem("QUIZ") as string);
+	// if (localStorage.getItem("QUIZ"))
+	// 	return JSON.parse(localStorage.getItem("QUIZ") as string);
+	//TODO: Uncomment when working on lifecycle
 	const { difficulty, category, numberOfQuestions } =
 		useAtomValue(quizFormAtom);
 	try {
@@ -58,7 +59,7 @@ export default async function getQuiz(): Promise<TQuiz> {
 			case 5:
 				throw new Error("Rate limit exceeded");
 		}
-		// Remove type,difficulty,category parameters
+
 		data.results.forEach((result) => {
 			delete result["type"];
 			delete result["difficulty"];

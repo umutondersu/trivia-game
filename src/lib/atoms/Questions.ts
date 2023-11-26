@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage, loadable } from "jotai/utils";
 import getQuiz from "../data";
 
 export const QuizAtom = atom(getQuiz);
@@ -9,7 +9,8 @@ export const QuestionNumberAtom = atomWithStorage("AnswerNumber", 0);
 
 export const AnsweredAtom = atom(false);
 
-export const AnswersAtom = atom(async (get) => {
+//TODO: get rid of delays after testing
+const AnswersAtom = atom(async (get) => {
 	const QuizPromise = get(QuizAtom);
 	const questionNumber = get(QuestionNumberAtom);
 	const Quiz = await QuizPromise;
@@ -23,14 +24,20 @@ export const AnswersAtom = atom(async (get) => {
 		correct: true,
 	});
 	Answers.sort(() => Math.random() - 0.5);
+	const twosecondsdelay = new Promise((resolve) => setTimeout(resolve, 2000));
+	await twosecondsdelay;
 	return Answers;
 });
+export const loadableAnswerAtom = loadable(AnswersAtom);
 
-export const QuestionAtom = atom(async (get) => {
+const QuestionAtom = atom(async (get) => {
 	const QuizPromise = get(QuizAtom);
 	const questionNumber = get(QuestionNumberAtom);
 	const Quiz = await QuizPromise;
 
 	const question = Quiz[questionNumber]["question"];
+	const twosecondsdelay = new Promise((resolve) => setTimeout(resolve, 2000));
+	await twosecondsdelay;
 	return question;
 });
+export const loadableQuestionAtom = loadable(QuestionAtom);
