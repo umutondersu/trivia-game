@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export type theme = "light" | "dark";
 
+//TODO numberofquestions don't turn red when input is string
 export const FormSchema = z.object({
 	difficulty: z.string({
 		required_error: "Required",
