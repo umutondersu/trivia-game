@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 function AnswerButton({ children }: { children: React.ReactNode }) {
 	return (
-		<Button className="bg-background border text-text text-xl md:p-11 py-5">
+		<Button className="bg-background border text-text text-xl md:p-11 py-6">
 			{children}
 		</Button>
 	);
