@@ -1,19 +1,23 @@
-import React from "react";
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 
-function AnswerButton({ children }: { children: React.ReactNode }) {
-	return (
+export default function AnswerButton({
+	answer,
+}: {
+	answer: {
+		text: string;
+		correct: boolean;
+	};
+}) {
+	return answer.text !== "Loading" ? (
 		<Button className="bg-background border text-text text-xl md:p-11 py-6">
-			{children}
+			{answer.text}
+		</Button>
+	) : (
+		<Button
+			disabled
+			className="bg-background border text-text text-xl md:p-11 py-6">
+			<Skeleton className="w-full text-sm">&nbsp;</Skeleton>
 		</Button>
 	);
 }
-
-// function AnswerButton({ Answer }: { Answer: { answer: string; correct: boolean } }) {
-// 	return (
-// 		<Button className="bg-background border text-text md:p-11 py-5">
-// 			{Answer.answer}
-// 		</Button>
-// 	);
-// }
-export default AnswerButton;

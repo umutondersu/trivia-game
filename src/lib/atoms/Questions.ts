@@ -7,7 +7,7 @@ export const QuizAtom = atom(getQuiz);
 
 export const QuestionNumberAtom = atomWithStorage("AnswerNumber", 0);
 
-export const AnsweredAtom = atom(false);
+export const AnswerStatusAtom = atom({ answered: false, correct: false });
 
 //TODO: get rid of delays after testing
 const AnswersAtom = atom(async (get) => {
