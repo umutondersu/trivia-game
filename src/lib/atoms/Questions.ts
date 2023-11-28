@@ -9,7 +9,6 @@ export const QuestionNumberAtom = atomWithStorage("AnswerNumber", 0);
 
 export const AnswerStatusAtom = atom({ answered: false, correct: false });
 
-//TODO: get rid of delays after testing
 const AnswersAtom = atom(async (get) => {
 	const QuizPromise = get(QuizAtom);
 	const questionNumber = get(QuestionNumberAtom);
@@ -24,8 +23,6 @@ const AnswersAtom = atom(async (get) => {
 		correct: true,
 	});
 	Answers.sort(() => Math.random() - 0.5);
-	const twosecondsdelay = new Promise((resolve) => setTimeout(resolve, 2000));
-	await twosecondsdelay;
 	return Answers;
 });
 export const loadableAnswerAtom = loadable(AnswersAtom);
@@ -36,8 +33,6 @@ const QuestionAtom = atom(async (get) => {
 	const Quiz = await QuizPromise;
 
 	const question = Quiz[questionNumber]["question"];
-	const twosecondsdelay = new Promise((resolve) => setTimeout(resolve, 2000));
-	await twosecondsdelay;
 	return question;
 });
 export const loadableQuestionAtom = loadable(QuestionAtom);

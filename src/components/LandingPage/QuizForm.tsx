@@ -37,6 +37,7 @@ function QuizForm() {
 
 	function onSubmit(data: TFormValues) {
 		startTransition(() => {
+			localStorage.removeItem("QUIZ");
 			setQuizForm(data);
 			navigate("/quiz");
 		});
@@ -48,7 +49,7 @@ function QuizForm() {
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-col">
-					<div className="flex flex-auto flex-col md:flex-row mt-3 justify-evenly mb-20 md:-mt-20 md:-mx-36 sm:mx-10 mx-5">
+					<div className="mx-5 mb-20 mt-3 flex flex-auto flex-col justify-evenly sm:mx-10 md:-mx-36 md:-mt-20 md:flex-row">
 						<FormField
 							control={form.control}
 							name="difficulty"
@@ -198,7 +199,7 @@ function QuizForm() {
 					</div>
 					{/* TODO: Add a randomizer button */}
 					<Button
-						className="self-center sm:p-8 p-6 text-lg md:mb-5 sm:mb-16 sm:-mt-5 -mt-14 mb-8 "
+						className="-mt-14 mb-8 self-center p-6 text-lg sm:-mt-5 sm:mb-16 sm:p-8 md:mb-5 "
 						type="submit">
 						Start the Game
 					</Button>

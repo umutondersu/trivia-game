@@ -6,7 +6,7 @@ import { htmlEntitiesToUtf8 } from "./utils";
 async function getToken(): Promise<string | undefined> {
 	try {
 		const token = await fetch(
-			"https://opentdb.com/api_token.php?command=request"
+			"https://opentdb.com/api_token.php?command=request",
 		);
 		if (!token.ok) throw new Error("Bad response");
 		const rawtoken = TokenSchema.safeParse(await token.json());
@@ -29,15 +29,14 @@ async function getToken(): Promise<string | undefined> {
 }
 
 export default async function getQuiz(): Promise<TQuiz> {
-	// if (localStorage.getItem("QUIZ"))
-	// 	return JSON.parse(localStorage.getItem("QUIZ") as string);
-	//TODO: Uncomment when working on lifecycle
+	if (localStorage.getItem("QUIZ"))
+		return JSON.parse(localStorage.getItem("QUIZ") as string);
 	const { difficulty, category, numberOfQuestions } =
 		useAtomValue(quizFormAtom);
 	try {
 		const token = await getToken();
 		const response = await fetch(
-			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`
+			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`,
 		);
 		if (!response.ok) throw new Error("Bad response");
 
@@ -48,7 +47,7 @@ export default async function getQuiz(): Promise<TQuiz> {
 		switch (data.response_code) {
 			case 1:
 				throw new Error(
-					"There are no more questions in this category."
+					"There are no more questions in this category.",
 				);
 			case 2:
 				throw new Error("Invalid parameters");
@@ -66,13 +65,14 @@ export default async function getQuiz(): Promise<TQuiz> {
 			delete result["category"];
 			result["question"] = htmlEntitiesToUtf8(result["question"]);
 			result["correct_answer"] = htmlEntitiesToUtf8(
-				result["correct_answer"]
+				result["correct_answer"],
 			);
 			result["incorrect_answers"] = result["incorrect_answers"].map(
-				(answer) => htmlEntitiesToUtf8(answer)
+				(answer) => htmlEntitiesToUtf8(answer),
 			) as [string, string, string];
 		});
 		localStorage.setItem("QUIZ", JSON.stringify(data.results));
+		console.log("Quiz Item is set");
 		return data.results;
 	} catch (error) {
 		if (error instanceof Error) throw new Error(error.message);
