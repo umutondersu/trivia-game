@@ -3,7 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import Quiz from "./pages/Quiz";
 import Score from "./pages/Score";
 import useThemeAtom from "./hooks/useThemeAtom";
-import ToggleButton from "./components/ui/ToggleButton";
+import ToggleButton from "./components/ui/togglebutton";
 
 export default function App() {
 	const [theme, toggleTheme] = useThemeAtom();
@@ -19,9 +19,9 @@ export default function App() {
 			<a
 				href="https://github.com/umutondersu"
 				target="_blank"
-				className="absolute bottom-0 w-full md:mb-2 sm:-mb-12 text-center text-muted group">
+				className="group absolute bottom-0 w-full text-center text-muted sm:-mb-12 md:mb-2">
 				Made by{" "}
-				<span className="group-hover:text-muted-foreground group-hover:underline transition-colors ease-linear duration-100 delay-0">
+				<span className="transition-colors delay-0 duration-100 ease-linear group-hover:text-muted-foreground group-hover:underline">
 					Umut
 				</span>
 			</a>
