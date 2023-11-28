@@ -3,7 +3,7 @@ import { quizFormAtom } from "./atoms/LandingPage";
 import { QuizSchema, TQuiz, TokenSchema } from "./definitions";
 import { htmlEntitiesToUtf8 } from "./utils";
 
-async function getToken(): Promise<string | undefined> {
+async function fetchToken(): Promise<string | undefined> {
 	try {
 		const token = await fetch(
 			"https://opentdb.com/api_token.php?command=request",
@@ -28,13 +28,14 @@ async function getToken(): Promise<string | undefined> {
 	}
 }
 
-export default async function getQuiz(): Promise<TQuiz> {
+export default async function fetchQuiz(): Promise<TQuiz> {
 	if (localStorage.getItem("QUIZ"))
 		return JSON.parse(localStorage.getItem("QUIZ") as string);
 	const { difficulty, category, numberOfQuestions } =
 		useAtomValue(quizFormAtom);
 	try {
-		const token = await getToken();
+		const token = await fetchToken();
+		console.log("token is:", token);
 		const response = await fetch(
 			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`,
 		);
@@ -72,7 +73,6 @@ export default async function getQuiz(): Promise<TQuiz> {
 			) as [string, string, string];
 		});
 		localStorage.setItem("QUIZ", JSON.stringify(data.results));
-		console.log("Quiz Item is set");
 		return data.results;
 	} catch (error) {
 		if (error instanceof Error) throw new Error(error.message);

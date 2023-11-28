@@ -6,14 +6,19 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../components/ui/card";
+import { useEffect } from "react";
 
-function LandingPage() {
+export default function LandingPage() {
+	useEffect(() => {
+		localStorage.removeItem("QUIZ");
+		localStorage.removeItem("ANSWERNUMBER");
+	}, []);
 	return (
 		<PageContainer className="justify-around">
-			<h1 className="self-center font-extrabold text-2xl sm:mt-0 sm:mb-0 -mb-24 mt-8">
+			<h1 className="-mb-24 mt-8 self-center text-2xl font-extrabold sm:mb-0 sm:mt-0">
 				Welcome!
 			</h1>
-			<Card className="md:-mt-20 mt-24 sm:mx-20 mx-4 sm:text-base text-sm">
+			<Card className="mx-4 mt-24 text-sm sm:mx-20 sm:text-base md:-mt-20">
 				<CardHeader>
 					<CardTitle>How to play:</CardTitle>
 				</CardHeader>
@@ -53,5 +58,3 @@ function LandingPage() {
 		</PageContainer>
 	);
 }
-
-export default LandingPage;

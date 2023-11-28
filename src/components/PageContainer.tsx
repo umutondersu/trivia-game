@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 import { cn } from "../lib/utils";
 
+//TODO: fix down overflow when dev tools are open
 function PageContainer({
 	children,
 	className,
@@ -11,8 +12,8 @@ function PageContainer({
 	return (
 		<div
 			className={cn(
-				"flex flex-col h-screen w-screen overflow-clip",
-				className
+				"flex h-screen w-screen flex-col overflow-clip",
+				className,
 			)}>
 			{children}
 		</div>

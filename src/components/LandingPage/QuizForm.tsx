@@ -37,7 +37,6 @@ function QuizForm() {
 
 	function onSubmit(data: TFormValues) {
 		startTransition(() => {
-			localStorage.removeItem("QUIZ");
 			setQuizForm(data);
 			navigate("/quiz");
 		});

@@ -14,17 +14,21 @@ function AnswerStatusBar() {
 				"relative bottom-3 mx-auto flex w-60 items-center justify-center gap-x-1 rounded-sm bg-red-600 p-2 opacity-0 md:bottom-6 md:w-80",
 				{
 					"opacity-100": answered.answered,
-					"bg-green-600": answered.correct === true,
+					"bg-green-600": answered.correct,
 				},
 			)}>
 			{answered.correct ? (
 				<>
-					<CheckCircle2 className={ClassName} size={25} />
+					<div>
+						<CheckCircle2 className={ClassName} size={25} />
+					</div>
 					Correct Answer!
 				</>
 			) : (
 				<>
-					<XCircle className={ClassName} size={25} />
+					<div>
+						<XCircle className={ClassName} size={25} />
+					</div>
 					Incorrect Answer!
 				</>
 			)}

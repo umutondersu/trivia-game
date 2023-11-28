@@ -30,16 +30,15 @@ export const QuizSchema = z.object({
 			question: z.string(),
 			correct_answer: z.string(),
 			incorrect_answers: z.tuple([z.string(), z.string(), z.string()]),
-		})
+		}),
 	),
 });
 
-export type TQuiz =
-	| {
-			question: string;
-			correct_answer: string;
-			incorrect_answers: [string, string, string];
-	  }[];
+export type TQuiz = {
+	question: string;
+	correct_answer: string;
+	incorrect_answers: [string, string, string];
+}[];
 
 export const TokenSchema = z.object({
 	response_code: z.number(),
@@ -51,3 +50,8 @@ export type Tanswers = {
 	text: string;
 	correct: boolean;
 }[];
+
+export type LoadableAnswer = {
+	state: string;
+	contents: Array<{ correct: boolean; text: string }>;
+};
