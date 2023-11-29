@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 function Quiz() {
-	const [Isanswered, setIsAnswered] = useAtom(AnswerStatusAtom);
+	const [{ answered }, setIsAnswered] = useAtom(AnswerStatusAtom);
 	const [QuestionNumber, setQuestionNumber] = useAtom(QuestionNumberAtom);
 	const QuestionCount = useAtomValue(QuestionCountAtom);
 	const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Quiz() {
 	}, [data]);
 
 	useEffect(() => {
-		if (Isanswered.answered) {
+		if (answered) {
 			setTimeout(() => {
 				if (QuestionNumber === QuestionCount - 1) {
 					setIsAnswered({ answered: false, correct: false });
@@ -36,7 +36,7 @@ function Quiz() {
 				setIsAnswered((prev) => ({ ...prev, answered: false }));
 			}, 5000);
 		}
-	}, [Isanswered.answered]);
+	}, [answered]);
 
 	return (
 		<PageContainer className="justify-evenly">
