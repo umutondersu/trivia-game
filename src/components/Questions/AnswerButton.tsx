@@ -1,12 +1,18 @@
-import { AnswerStatusAtom, loadableAnswerAtom } from "../../lib/atoms/Quiz";
+import { set } from "react-hook-form";
+import {
+	AnswerStatusAtom,
+	ProgressBarAtom,
+	loadableAnswerAtom,
+} from "../../lib/atoms/Quiz";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 export default function AnswerButton({ index }: { index: number }) {
 	const [Answers] = useAtom(loadableAnswerAtom);
 	const [{ answered }, setIsAnswered] = useAtom(AnswerStatusAtom);
+	const setProgress = useSetAtom(ProgressBarAtom);
 	const Classname = "text-text border bg-background py-6 text-xl md:p-11";
 
 	if (Answers.state === "hasError") throw Answers.error;
@@ -21,6 +27,7 @@ export default function AnswerButton({ index }: { index: number }) {
 	const answer = Answers.data[index];
 	const handleClick = () => {
 		if (answered) return;
+		setProgress((prev) => prev + 1);
 		setIsAnswered({ correct: answer.correct, answered: true });
 	};
 	return (

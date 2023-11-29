@@ -12,6 +12,7 @@ export default function LandingPage() {
 	useEffect(() => {
 		localStorage.removeItem("QUIZ");
 		localStorage.removeItem("ANSWERNUMBER");
+		localStorage.removeItem("PROGRESS");
 	}, []);
 	return (
 		<PageContainer className="justify-around">

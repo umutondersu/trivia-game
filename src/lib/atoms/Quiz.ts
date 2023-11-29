@@ -47,3 +47,5 @@ export const QuestionCountAtom = atom(async (get) => {
 	const Quiz = await get(QuizAtom);
 	return Quiz.length;
 });
+
+export const ProgressBarAtom = atomWithStorage("PROGRESS", 0);
