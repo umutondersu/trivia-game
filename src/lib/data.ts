@@ -29,8 +29,8 @@ async function fetchToken(): Promise<string> {
 }
 
 export default async function fetchQuiz(): Promise<TQuiz> {
-	if (localStorage.getItem("QUIZ"))
-		return JSON.parse(localStorage.getItem("QUIZ") as string);
+	// if (localStorage.getItem("QUIZ"))
+	// 	return JSON.parse(localStorage.getItem("QUIZ") as string);
 	const { difficulty, category, numberOfQuestions } =
 		useAtomValue(quizFormAtom);
 	try {
@@ -72,7 +72,7 @@ export default async function fetchQuiz(): Promise<TQuiz> {
 				(answer) => htmlEntitiesToUtf8(answer),
 			) as [string, string, string];
 		});
-		localStorage.setItem("QUIZ", JSON.stringify(data.results));
+		// localStorage.setItem("QUIZ", JSON.stringify(data.results));
 		return data.results;
 	} catch (error) {
 		if (error instanceof Error) throw new Error(error.message);

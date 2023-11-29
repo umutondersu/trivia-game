@@ -1,9 +1,17 @@
 import { atom } from "jotai";
 import { atomWithStorage, loadable } from "jotai/utils";
 import fetchQuiz from "../data";
+import { TQuiz } from "../definitions";
 
-export const QuizAtom = atom(fetchQuiz);
-//TODO: When user wants to play the game again, delete the quiz from localstorage
+const QuizdataAtom = atom(() => fetchQuiz());
+const QuizcacheAtom = atomWithStorage<TQuiz | null>("QUIZ", null);
+export const QuizAtom = atom(
+	(get) => get(QuizcacheAtom) || get(QuizdataAtom),
+	async (get, set) => {
+		// write to cache
+		set(QuizcacheAtom, await get(QuizdataAtom));
+	},
+);
 
 export const QuestionNumberAtom = atomWithStorage("ANSWERNUMBER", 0);
 

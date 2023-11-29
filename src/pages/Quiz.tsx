@@ -8,6 +8,7 @@ import {
 	AnswerStatusAtom,
 	QuestionCountAtom,
 	QuestionNumberAtom,
+	QuizAtom,
 } from "../lib/atoms/Quiz";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -17,6 +18,11 @@ function Quiz() {
 	const [QuestionNumber, setQuestionNumber] = useAtom(QuestionNumberAtom);
 	const QuestionCount = useAtomValue(QuestionCountAtom);
 	const navigate = useNavigate();
+
+	const [data, sync] = useAtom(QuizAtom);
+	useEffect(() => {
+		sync();
+	}, [data]);
 
 	useEffect(() => {
 		if (Isanswered.answered) {
