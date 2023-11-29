@@ -1,13 +1,9 @@
-import { set } from "react-hook-form";
-import {
-	AnswerStatusAtom,
-	ProgressBarAtom,
-	loadableAnswerAtom,
-} from "../../lib/atoms/Quiz";
+import { AnswerStatusAtom, loadableAnswerAtom } from "../../lib/atoms/Quiz";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { useAtom, useSetAtom } from "jotai";
+import { ProgressBarAtom } from "../../lib/atoms/ProgressBar";
 
 export default function AnswerButton({ index }: { index: number }) {
 	const [Answers] = useAtom(loadableAnswerAtom);

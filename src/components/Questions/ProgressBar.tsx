@@ -1,4 +1,5 @@
-import { ProgressBarAtom, QuestionCountAtom } from "../../lib/atoms/Quiz";
+import { QuestionCountAtom } from "../../lib/atoms/Quiz";
+import { ProgressBarAtom } from "../../lib/atoms/ProgressBar";
 import { Progress } from "../ui/progress";
 import { useAtomValue } from "jotai";
 
