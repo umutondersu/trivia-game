@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { Card, CardHeader, CardTitle } from "../ui/card";
-import { loadableQuestionAtom } from "../../lib/atoms/Questions";
+import { loadableQuestionAtom } from "../../lib/atoms/Quiz";
 import { Skeleton } from "../ui/skeleton";
 
 export default function QuestionCard() {

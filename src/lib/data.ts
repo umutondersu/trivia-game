@@ -3,7 +3,7 @@ import { quizFormAtom } from "./atoms/LandingPage";
 import { QuizSchema, TQuiz, TokenSchema } from "./definitions";
 import { htmlEntitiesToUtf8 } from "./utils";
 
-async function fetchToken(): Promise<string | undefined> {
+async function fetchToken(): Promise<string> {
 	try {
 		const token = await fetch(
 			"https://opentdb.com/api_token.php?command=request",

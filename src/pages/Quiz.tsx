@@ -8,7 +8,7 @@ import {
 	AnswerStatusAtom,
 	QuestionCountAtom,
 	QuestionNumberAtom,
-} from "../lib/atoms/Questions";
+} from "../lib/atoms/Quiz";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 

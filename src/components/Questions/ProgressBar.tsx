@@ -1,7 +1,4 @@
-import {
-	QuestionCountAtom,
-	QuestionNumberAtom,
-} from "../../lib/atoms/Questions";
+import { QuestionCountAtom, QuestionNumberAtom } from "../../lib/atoms/Quiz";
 import { Progress } from "../ui/progress";
 import { useAtomValue } from "jotai";
 

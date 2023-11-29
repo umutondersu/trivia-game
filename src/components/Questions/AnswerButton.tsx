@@ -1,7 +1,4 @@
-import {
-	AnswerStatusAtom,
-	loadableAnswerAtom,
-} from "../../lib/atoms/Questions";
+import { AnswerStatusAtom, loadableAnswerAtom } from "../../lib/atoms/Quiz";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";

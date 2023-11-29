@@ -45,13 +45,3 @@ export const TokenSchema = z.object({
 	response_message: z.string(),
 	token: z.string(),
 });
-
-export type Tanswers = {
-	text: string;
-	correct: boolean;
-}[];
-
-export type LoadableAnswer = {
-	state: string;
-	contents: Array<{ correct: boolean; text: string }>;
-};
