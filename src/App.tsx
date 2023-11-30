@@ -4,6 +4,7 @@ import Quiz from "./pages/Quiz";
 import Score from "./pages/Score";
 import useThemeAtom from "./hooks/useThemeAtom";
 import ToggleButton from "./components/ui/togglebutton";
+import { Toaster } from "./components/ui/toaster";
 
 export default function App() {
 	const [theme, toggleTheme] = useThemeAtom();
@@ -25,6 +26,7 @@ export default function App() {
 					Umut
 				</span>
 			</a>
+			<Toaster />
 		</>
 	);
 }

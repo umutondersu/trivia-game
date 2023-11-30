@@ -4,7 +4,7 @@ export type theme = "light" | "dark";
 
 //TODO numberofquestions don't turn red when input is string
 export const FormSchema = z.object({
-	difficulty: z.string({
+	difficulty: z.enum(["easy", "medium", "hard", ""], {
 		required_error: "Required",
 	}),
 	category: z.number({
@@ -45,3 +45,10 @@ export const TokenSchema = z.object({
 	response_message: z.string(),
 	token: z.string(),
 });
+
+export const ScoreTable = {
+	incorrect: -1,
+	easy: 1,
+	medium: 2,
+	hard: 3,
+};

@@ -18,13 +18,14 @@ import {
 } from "../ui/select";
 import { Input } from "../ui/input";
 import { FormSchema, TFormValues } from "../../lib/definitions";
-import { quizFormAtom } from "../../lib/atoms/LandingPage";
-import { useAtom } from "jotai";
+import { difficultyAtom, quizFormAtom } from "../../lib/atoms/LandingPage";
+import { useAtom, useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { startTransition } from "react";
 
 function QuizForm() {
 	const [_, setQuizForm] = useAtom(quizFormAtom);
+	const setPersistentdifficulty = useSetAtom(difficultyAtom);
 	const navigate = useNavigate();
 
 	const form = useForm<TFormValues>({
@@ -38,6 +39,7 @@ function QuizForm() {
 	function onSubmit(data: TFormValues) {
 		startTransition(() => {
 			setQuizForm(data);
+			setPersistentdifficulty(data.difficulty);
 			navigate("/quiz");
 		});
 	}
