@@ -25,10 +25,12 @@ export default function Score() {
 
 	const ClassName = "md:text-2xl md:w-60 w-52 h-28 text-xl";
 	return (
-		<PageContainer className="items-center justify-around align-middle">
-			<h1 className=" text-2xl font-extrabold">Your Score is</h1>
-			<h2 className=" text-4xl font-extrabold">{Score}</h2>
-			<div className="relative bottom-8 mt-8 flex flex-shrink flex-col justify-center gap-10 md:bottom-20 md:flex-row md:gap-80">
+		<PageContainer className="justify-around align-middle">
+			<h1 className=" self-center text-2xl font-extrabold">
+				Your Score is
+			</h1>
+			<h2 className=" self-center text-4xl font-extrabold">{Score}</h2>
+			<div className="relative bottom-8 mt-8 flex flex-col items-center justify-around gap-y-9 sm:bottom-20 sm:flex-row">
 				<Button
 					variant="secondary"
 					onClick={() => {
