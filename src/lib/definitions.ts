@@ -2,7 +2,6 @@ import { z } from "zod";
 
 export type theme = "light" | "dark";
 
-//TODO numberofquestions don't turn red when input is string
 export const FormSchema = z.object({
 	difficulty: z.enum(["easy", "medium", "hard", ""], {
 		required_error: "Required",
@@ -10,13 +9,12 @@ export const FormSchema = z.object({
 	category: z.number({
 		required_error: "Required",
 	}),
-	numberOfQuestions: z
-		.string()
-		.transform((value) => (value === "" ? NaN : Number(value)))
-		.refine((value) => !isNaN(value), { message: "Required" })
-		.refine((value) => value >= 1 && value <= 50, {
-			message: "Must be between 1 and 50",
-		}),
+	numberOfQuestions: z.coerce
+		.number({
+			invalid_type_error: "Required",
+		})
+		.gte(1, "Must be at least 1")
+		.lte(50, "Must be at most 50"),
 });
 export type TFormValues = z.infer<typeof FormSchema>;
 

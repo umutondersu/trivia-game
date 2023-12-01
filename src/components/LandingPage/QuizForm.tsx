@@ -23,17 +23,13 @@ import { useAtom, useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { startTransition } from "react";
 
-function QuizForm() {
+export default function QuizForm() {
 	const [_, setQuizForm] = useAtom(quizFormAtom);
 	const setPersistentdifficulty = useSetAtom(difficultyAtom);
 	const navigate = useNavigate();
 
 	const form = useForm<TFormValues>({
 		resolver: zodResolver(FormSchema),
-		defaultValues: {
-			// @ts-ignore
-			numberOfQuestions: "",
-		},
 	});
 
 	function onSubmit(data: TFormValues) {
@@ -188,9 +184,9 @@ function QuizForm() {
 									<FormLabel>Number of Questions</FormLabel>
 									<FormControl>
 										<Input
+											{...field}
 											placeholder="e.g 10"
 											type="number"
-											{...field}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -208,17 +204,4 @@ function QuizForm() {
 			</Form>
 		</div>
 	);
-}
-
-export default QuizForm;
-
-{
-	/* <form className="flex flex-col gap-y-20">
-			<div className="flex flex-initial justify-evenly bg-red-200">
-				<div> Difficulty</div>
-				<div> Category</div>
-				<div> Number of Questions</div>
-			</div>
-			<Button className="self-center">Start the Game</Button>
-		</form> */
 }
