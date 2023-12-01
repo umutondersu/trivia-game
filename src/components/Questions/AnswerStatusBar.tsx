@@ -1,5 +1,4 @@
 import { cn } from "../../lib/utils";
-import Check from "../../assets/circle-check-regular.svg";
 import { useAtomValue } from "jotai";
 import { AnswerStatusAtom } from "../../lib/atoms/Quiz";
 import { CheckCircle2, XCircle } from "lucide-react";
