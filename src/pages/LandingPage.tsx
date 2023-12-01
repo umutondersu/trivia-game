@@ -48,11 +48,12 @@ export default function LandingPage() {
 							- Answer the questions to the best of your ability.
 						</li>
 						<li>
-							- At the end of the game, you can share your score
-							with friends or play again with your progress
+							- At the end of the game, you can share your score,
+							start a new game, or play again with your current
+							progress.
 						</li>
 					</ol>
-					<p className="my-2 underline">Enjoy the game!</p>
+					<p className="my-2 underline">Enjoy!</p>
 				</CardContent>
 			</Card>
 			<QuizForm />
