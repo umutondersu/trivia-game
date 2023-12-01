@@ -8,6 +8,7 @@ export const FormSchema = z.object({
 	}),
 	category: z.number({
 		required_error: "Required",
+		invalid_type_error: "Required",
 	}),
 	numberOfQuestions: z.coerce
 		.number({

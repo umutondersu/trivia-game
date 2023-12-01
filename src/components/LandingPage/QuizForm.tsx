@@ -22,23 +22,43 @@ import { difficultyAtom, quizFormAtom } from "../../lib/atoms/LandingPage";
 import { useAtom, useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { startTransition } from "react";
+import { Dice5 } from "lucide-react";
 
 export default function QuizForm() {
-	const [_, setQuizForm] = useAtom(quizFormAtom);
+	const [QuizForm, setQuizForm] = useAtom(quizFormAtom);
 	const setPersistentdifficulty = useSetAtom(difficultyAtom);
 	const navigate = useNavigate();
 
 	const form = useForm<TFormValues>({
 		resolver: zodResolver(FormSchema),
+		defaultValues: {
+			// @ts-expect-error
+			numberOfQuestions: "",
+		},
 	});
 
 	function onSubmit(data: TFormValues) {
 		startTransition(() => {
-			setQuizForm(data);
+			setQuizForm(() => {
+				return {
+					...data,
+				};
+			});
 			setPersistentdifficulty(data.difficulty);
 			navigate("/quiz");
 		});
 	}
+
+	const handleRandomize = () => {
+		form.setValue(
+			"difficulty",
+			["easy", "medium", "hard"][
+				Math.floor(Math.random() * 3)
+			] as TFormValues["difficulty"],
+		);
+		form.setValue("category", Math.floor(Math.random() * 23) + 1);
+		form.setValue("numberOfQuestions", Math.floor(Math.random() * 50) + 1);
+	};
 
 	return (
 		<Form {...form}>
@@ -53,6 +73,7 @@ export default function QuizForm() {
 							<FormItem className="basis-2/12">
 								<FormLabel>Difficulty</FormLabel>
 								<Select
+									key={form.watch("difficulty")}
 									onValueChange={field.onChange}
 									defaultValue={field.value}>
 									<FormControl>
@@ -83,6 +104,7 @@ export default function QuizForm() {
 							<FormItem className="basis-2/12">
 								<FormLabel>Category</FormLabel>
 								<Select
+									key={form.watch("category")}
 									onValueChange={(value) =>
 										field.onChange(Number(value))
 									}
@@ -190,9 +212,14 @@ export default function QuizForm() {
 						)}
 					/>
 				</div>
-				{/* TODO: Add a randomizer button */}
 				<Button
-					className="-mt-14 mb-8 self-center p-6 text-lg sm:-mt-5 sm:mb-16 sm:p-8 md:mb-5 "
+					type="button"
+					className="absolute bottom-7 left-8 h-10 w-10 bg-green-500 p-2"
+					onClick={handleRandomize}>
+					<Dice5 strokeWidth={3} size={35} />
+				</Button>
+				<Button
+					className="-mt-14 mb-8 self-center p-6 text-lg sm:-mt-5 sm:mb-16 sm:p-8 md:mb-5"
 					type="submit">
 					Start the Game
 				</Button>

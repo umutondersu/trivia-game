@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 export default function LandingPage() {
 	useEffect(() => {
+		localStorage.removeItem("DIFFICULTY");
 		localStorage.removeItem("QUIZ");
 		localStorage.removeItem("ANSWERNUMBER");
 		localStorage.removeItem("PROGRESS");
