@@ -50,8 +50,8 @@ export default function LandingPage() {
 						</li>
 						<li>
 							- At the end of the game, you can share your score,
-							start a new game, or play again with your current
-							progress.
+							start a new game, or keep playing with your recent
+							score.
 						</li>
 					</ol>
 					<p className="my-2 underline">Enjoy!</p>
