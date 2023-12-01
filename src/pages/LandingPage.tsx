@@ -16,7 +16,7 @@ export default function LandingPage() {
 	}, []);
 	return (
 		<PageContainer className="justify-around">
-			<h1 className="-mb-24 mt-8 self-center text-2xl font-extrabold sm:mb-0 sm:mt-0">
+			<h1 className="-mb-20 mt-4 self-center text-2xl font-extrabold sm:mb-0 sm:mt-0">
 				Welcome!
 			</h1>
 			<Card className="mx-4 mt-24 text-sm sm:mx-20 sm:text-base md:-mt-20">
