@@ -7,7 +7,6 @@ import { CheckCircle2, XCircle } from "lucide-react";
 function AnswerStatusBar() {
 	const { answered, correct } = useAtomValue(AnswerStatusAtom);
 	const ClassName = "relative inline top-[1px] text-foreground";
-	//TODO: Change Icons with Lucide React Icons
 	return (
 		<div
 			className={cn(

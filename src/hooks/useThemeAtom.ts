@@ -24,6 +24,6 @@ export default function useThemeAtom(): [theme, () => void] {
 	const toggleTheme = () => {
 		setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 	};
-	//TODO: Light Mode Flashes on load for a second (maybe use a loading screen)
+
 	return [theme, toggleTheme];
 }

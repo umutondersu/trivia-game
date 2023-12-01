@@ -1,8 +1,7 @@
 import { HTMLAttributes } from "react";
 import { cn } from "../lib/utils";
 
-//TODO: fix down overflow when dev tools are open
-function PageContainer({
+export default function PageContainer({
 	children,
 	className,
 }: {
@@ -19,5 +18,3 @@ function PageContainer({
 		</div>
 	);
 }
-
-export default PageContainer;
