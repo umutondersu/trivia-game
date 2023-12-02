@@ -8,7 +8,6 @@ import {
 	AnswerStatusAtom,
 	QuestionCountAtom,
 	QuestionNumberAtom,
-	QuizAtom,
 } from "../lib/atoms/Quiz";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -21,13 +20,9 @@ function Quiz() {
 	const [QuestionNumber, setQuestionNumber] = useAtom(QuestionNumberAtom);
 	const QuestionCount = useAtomValue(QuestionCountAtom);
 	const difficulty = useAtomValue(difficultyAtom);
-	const [Score, setScore] = useAtom(scoreAtom);
+	const setScore = useSetAtom(scoreAtom);
+	const setQuizForm = useSetAtom(quizFormAtom);
 	const navigate = useNavigate();
-
-	const [data, sync] = useAtom(QuizAtom);
-	useEffect(() => {
-		sync();
-	}, [data]);
 
 	useEffect(() => {
 		if (answered) {
@@ -39,12 +34,10 @@ function Quiz() {
 							] + prev,
 				  )
 				: setScore((prev) => prev + ScoreTable.incorrect);
-			console.log("Current Score is:", Score);
 			setTimeout(() => {
 				if (QuestionNumber === QuestionCount - 1) {
 					setIsAnswered({ answered: false, correct: false });
 					navigate("/score", { replace: true });
-					navigate;
 					return;
 				}
 				setQuestionNumber(QuestionNumber + 1);
@@ -52,6 +45,10 @@ function Quiz() {
 			}, 5000);
 		}
 	}, [answered]);
+
+	useEffect(() => {
+		setQuizForm(null);
+	}, []);
 
 	return (
 		<PageContainer className="justify-evenly">

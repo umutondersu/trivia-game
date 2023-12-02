@@ -1,17 +1,9 @@
 import { atom } from "jotai";
 import { atomWithStorage, loadable } from "jotai/utils";
 import fetchQuiz from "../data";
-import { TQuiz } from "../definitions";
+import { quizFormAtom } from "./LandingPage";
 
-const QuizdataAtom = atom(() => fetchQuiz());
-const QuizcacheAtom = atomWithStorage<TQuiz | null>("QUIZ", null);
-export const QuizAtom = atom(
-	(get) => get(QuizcacheAtom) || get(QuizdataAtom),
-	async (get, set) => {
-		// write to cache
-		set(QuizcacheAtom, await get(QuizdataAtom));
-	},
-);
+export const QuizAtom = atom((get) => fetchQuiz(get(quizFormAtom)));
 
 export const QuestionNumberAtom = atomWithStorage("ANSWERNUMBER", 0);
 
@@ -20,7 +12,6 @@ export const AnswerStatusAtom = atom({ answered: false, correct: false });
 const AnswersAtom = atom(async (get) => {
 	const Quiz = await get(QuizAtom);
 	const questionNumber = get(QuestionNumberAtom);
-	console.log("questionNumber inside AnswersAtom is:", questionNumber);
 	const Answers = Quiz[questionNumber]["incorrect_answers"].map((answer) => ({
 		text: answer,
 		correct: false,

@@ -1,9 +1,10 @@
-import { useAtomValue } from "jotai";
-import { quizFormAtom } from "./atoms/LandingPage";
-import { QuizSchema, TQuiz, TokenSchema } from "./definitions";
+import { QuizSchema, TFormValues, TQuiz, TokenSchema } from "./definitions";
 import { htmlEntitiesToUtf8 } from "./utils";
 
 async function fetchToken(): Promise<string> {
+	if (sessionStorage.getItem("TOKEN")) {
+		return sessionStorage.getItem("TOKEN") as string;
+	}
 	try {
 		const token = await fetch(
 			"https://opentdb.com/api_token.php?command=request",
@@ -16,6 +17,8 @@ async function fetchToken(): Promise<string> {
 
 		if (rawtoken.data.response_code !== 0)
 			throw new Error("Unable to get token");
+
+		sessionStorage.setItem("TOKEN", rawtoken.data.token);
 		return rawtoken.data.token;
 	} catch (error) {
 		if (error instanceof Error) {
@@ -28,19 +31,23 @@ async function fetchToken(): Promise<string> {
 	}
 }
 
-export default async function fetchQuiz(): Promise<TQuiz> {
-	// if (localStorage.getItem("QUIZ"))
-	// 	return JSON.parse(localStorage.getItem("QUIZ") as string);
-	const { difficulty, category, numberOfQuestions } =
-		useAtomValue(quizFormAtom);
+export default async function fetchQuiz(
+	QuizFormValues: TFormValues,
+): Promise<TQuiz> {
+	if (localStorage.getItem("QUIZ"))
+		return JSON.parse(localStorage.getItem("QUIZ") as string);
+	const { difficulty, category, numberOfQuestions } = QuizFormValues;
 	try {
 		const token = await fetchToken();
-		console.log("token is:", token);
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 		const response = await fetch(
 			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`,
 		);
-		if (!response.ok) throw new Error("Bad response");
-
+		if (!response.ok) {
+			if (response.status === 429)
+				throw new Error("Too many requests. Please slow down.");
+			throw new Error("Bad response");
+		}
 		const rawdata = QuizSchema.safeParse(await response.json());
 		if (!rawdata.success) throw new Error("response has an invalid format");
 
@@ -55,7 +62,11 @@ export default async function fetchQuiz(): Promise<TQuiz> {
 			case 3:
 				throw new Error("Token not found");
 			case 4:
-				throw new Error("Token empty");
+				const sendReset = await fetch(
+					`https://opentdb.com/api_token.php?command=reset&token=${token}`,
+				);
+				if (!sendReset.ok) throw new Error("Bad response from reset");
+				return fetchQuiz(QuizFormValues);
 			case 5:
 				throw new Error("Rate limit exceeded");
 		}
@@ -72,7 +83,7 @@ export default async function fetchQuiz(): Promise<TQuiz> {
 				(answer) => htmlEntitiesToUtf8(answer),
 			) as [string, string, string];
 		});
-		// localStorage.setItem("QUIZ", JSON.stringify(data.results));
+		localStorage.setItem("QUIZ", JSON.stringify(data.results));
 		return data.results;
 	} catch (error) {
 		if (error instanceof Error) throw new Error(error.message);
