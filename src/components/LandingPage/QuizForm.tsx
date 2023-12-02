@@ -23,7 +23,6 @@ import { useSetAtom, useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { startTransition, useEffect } from "react";
 import { Dice5 } from "lucide-react";
-import Quiz from "../../pages/Quiz";
 
 export default function QuizForm() {
 	const [QuizForm, setQuizForm] = useAtom(quizFormAtom);
@@ -37,11 +36,6 @@ export default function QuizForm() {
 			numberOfQuestions: "",
 		},
 	});
-
-	// const FormValuesApplied =
-	// 	QuizForm.numberOfQuestions === form.getValues("numberOfQuestions") &&
-	// 	QuizForm.category === form.getValues("category") &&
-	// 	QuizForm.difficulty === form.getValues("difficulty");
 
 	function onSubmit(data: TFormValues) {
 		setQuizForm(data);
@@ -62,7 +56,7 @@ export default function QuizForm() {
 			] as TFormValues["difficulty"],
 		);
 		form.setValue("category", Math.floor(Math.random() * 23) + 1);
-		form.setValue("numberOfQuestions", Math.floor(Math.random() * 10) + 1);
+		form.setValue("numberOfQuestions", Math.floor(Math.random() * 50) + 1);
 	};
 
 	return (
@@ -238,7 +232,7 @@ export default function QuizForm() {
 					</form>
 				</Form>
 			) : (
-				<div className="flex h-screen flex-col items-center justify-center">
+				<div className="flex flex-col items-center justify-center">
 					<div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
 					<p className="text-2xl text-gray-900">Loading...</p>
 				</div>
