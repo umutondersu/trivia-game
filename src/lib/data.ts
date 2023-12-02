@@ -32,24 +32,24 @@ async function fetchToken(): Promise<string> {
 }
 
 export default async function fetchQuiz(
-	QuizFormValues: TFormValues,
+	QuizFormValues: TFormValues | null,
 ): Promise<TQuiz> {
 	if (localStorage.getItem("QUIZ"))
 		return JSON.parse(localStorage.getItem("QUIZ") as string);
+	if (!QuizFormValues) throw new Error("No form values");
 	const { difficulty, category, numberOfQuestions } = QuizFormValues;
+	const token = await fetchToken();
 	try {
-		const token = await fetchToken();
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 		const response = await fetch(
 			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`,
 		);
-		if (!response.ok) {
-			if (response.status === 429)
-				throw new Error("Too many requests. Please slow down.");
-			throw new Error("Bad response");
-		}
+
 		const rawdata = QuizSchema.safeParse(await response.json());
-		if (!rawdata.success) throw new Error("response has an invalid format");
+		if (!rawdata.success) {
+			console.log(rawdata.error);
+			throw new Error("response has an invalid format");
+		}
 
 		const data = rawdata.data;
 		switch (data.response_code) {
@@ -62,11 +62,7 @@ export default async function fetchQuiz(
 			case 3:
 				throw new Error("Token not found");
 			case 4:
-				const sendReset = await fetch(
-					`https://opentdb.com/api_token.php?command=reset&token=${token}`,
-				);
-				if (!sendReset.ok) throw new Error("Bad response from reset");
-				return fetchQuiz(QuizFormValues);
+				throw new Error("Token empty");
 			case 5:
 				throw new Error("Rate limit exceeded");
 		}
@@ -86,8 +82,27 @@ export default async function fetchQuiz(
 		localStorage.setItem("QUIZ", JSON.stringify(data.results));
 		return data.results;
 	} catch (error) {
-		if (error instanceof Error) throw new Error(error.message);
-		else if (error && typeof error === "object" && "message" in error)
+		if (error instanceof Error) {
+			if (error.message === "Rate limit exceeded") {
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(fetchQuiz(QuizFormValues));
+					}, 5500);
+				});
+			} else if (error.message === "Token empty") {
+				console.warn("Token empty, resetting token");
+				const sendReset = await fetch(
+					`https://opentdb.com/api_token.php?command=reset&token=${token}`,
+				);
+				if (!sendReset.ok) throw new Error("Bad response from reset");
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(fetchQuiz(QuizFormValues));
+					}, 5500);
+				});
+			}
+			throw new Error(error.message);
+		} else if (error && typeof error === "object" && "message" in error)
 			throw new Error((error as { message: string }).message);
 		else throw new Error("Unknown error");
 	}
