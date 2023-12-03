@@ -8,6 +8,7 @@ export default defineConfig({
 	plugins: [
 		react({ babel: { plugins: [jotaiDebugLabel, jotaiReactRefresh] } }),
 	],
+	base: "/trivia-game/",
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
