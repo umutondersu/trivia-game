@@ -20,11 +20,6 @@ function ToggleButton({
 			) : (
 				<Moon className={ClassName} />
 			)}
-			{/* <img
-				className="transition-all ease-linear duration-150 active:scale-50 active:translate-y-1"
-				src={theme === "dark" ? SunIconSrc : MoonIconSrc}
-				alt="toggle theme Icon"
-			/> */}
 		</Button>
 	);
 }
