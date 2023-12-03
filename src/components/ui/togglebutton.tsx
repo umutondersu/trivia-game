@@ -1,14 +1,9 @@
 import { Button } from "./button";
-import { theme } from "../../lib/definitions";
 import { Sun, Moon } from "lucide-react";
+import useThemeAtom from "../../hooks/useThemeAtom";
 
-function ToggleButton({
-	theme,
-	toggleTheme,
-}: {
-	theme: theme;
-	toggleTheme: () => void;
-}) {
+export default function ToggleButton() {
+	const [theme, toggleTheme] = useThemeAtom();
 	const ClassName =
 		"transition-all ease-linear duration-150 active:scale-50 active:translate-y-1 text-[hsl(222.2,84%,4.9%)]";
 	return (
@@ -23,5 +18,3 @@ function ToggleButton({
 		</Button>
 	);
 }
-
-export default ToggleButton;

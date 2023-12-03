@@ -2,16 +2,13 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Quiz from "./pages/Quiz";
 import Score from "./pages/Score";
-import useThemeAtom from "./hooks/useThemeAtom";
 import ToggleButton from "./components/ui/togglebutton";
 import { Toaster } from "./components/ui/toaster";
 
 export default function App() {
-	const [theme, toggleTheme] = useThemeAtom();
-
 	return (
 		<>
-			<ToggleButton theme={theme} toggleTheme={toggleTheme} />
+			<ToggleButton />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/quiz" element={<Quiz />} />

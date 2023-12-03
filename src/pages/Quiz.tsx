@@ -15,7 +15,7 @@ import { ScoreTable } from "../lib/definitions";
 import { difficultyAtom } from "../lib/atoms/LandingPage";
 import { scoreAtom } from "../lib/atoms/Score";
 
-function Quiz() {
+export default function Quiz() {
 	const [{ answered, correct }, setIsAnswered] = useAtom(AnswerStatusAtom);
 	const [QuestionNumber, setQuestionNumber] = useAtom(QuestionNumberAtom);
 	const QuestionCount = useAtomValue(QuestionCountAtom);
@@ -54,4 +54,3 @@ function Quiz() {
 		</PageContainer>
 	);
 }
-export default Quiz;
