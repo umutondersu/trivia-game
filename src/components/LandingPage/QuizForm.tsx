@@ -48,23 +48,10 @@ export default function QuizForm() {
 			setPersistentdifficulty(data.difficulty);
 			startTransition(() => navigate("/quiz"));
 		} catch (error: any) {
-			let message = {
-				title: "Something went wrong!",
-				description: error.message,
-			};
-			if (
-				error.message ===
-				"There are no more questions in this category."
-			) {
-				message = {
-					title: "No Questions left!",
-					description:
-						"There are no more questions with the current parameters.",
-				};
-			}
 			toast({
 				variant: "destructive",
-				...message,
+				title: "Something went wrong!",
+				description: error.message,
 			});
 		}
 	};
