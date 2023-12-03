@@ -42,10 +42,16 @@ export default async function fetchQuiz(
 
 	try {
 		await new Promise((resolve) => setTimeout(resolve, 1000));
-		const response = await fetch(
-			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`,
-		);
-
+		let response: Response;
+		if (category === 8) {
+			response = await fetch(
+				`https://opentdb.com/api.php?amount=${numberOfQuestions}&difficulty=${difficulty}&type=multiple&token=${token}`,
+			);
+		} else {
+			response = await fetch(
+				`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple&token=${token}`,
+			);
+		}
 		const rawdata = QuizSchema.safeParse(await response.json());
 		if (!rawdata.success) {
 			console.warn(rawdata.error);

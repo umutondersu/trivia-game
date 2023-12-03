@@ -148,9 +148,9 @@ export default function QuizForm() {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												{/* <SelectItem value="0">
-													Any
-												</SelectItem> */}
+												<SelectItem value="8">
+													All Categories
+												</SelectItem>
 												<SelectItem value="9">
 													General Knowledge
 												</SelectItem>

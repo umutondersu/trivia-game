@@ -6,10 +6,13 @@ export const FormSchema = z.object({
 	difficulty: z.enum(["easy", "medium", "hard", ""], {
 		required_error: "Required",
 	}),
-	category: z.number({
-		required_error: "Required",
-		invalid_type_error: "Required",
-	}),
+	category: z
+		.number({
+			required_error: "Required",
+			invalid_type_error: "Required",
+		})
+		.gte(8, "Must be at least 8")
+		.lte(32, "Must be at most 32"),
 	numberOfQuestions: z.coerce
 		.number({
 			invalid_type_error: "Required",
