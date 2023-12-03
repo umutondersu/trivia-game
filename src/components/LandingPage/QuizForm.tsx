@@ -69,7 +69,9 @@ export default function QuizForm() {
 		}
 	};
 	useEffect(() => {
-		setQuiz(() => null);
+		setQuiz(() => {
+			return null;
+		});
 	}, []);
 	const handleRandomize = () => {
 		form.setValue(
