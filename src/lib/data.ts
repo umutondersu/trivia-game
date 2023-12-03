@@ -30,7 +30,7 @@ async function fetchToken(): Promise<string> {
 		}
 	}
 }
-
+let attempts = 0;
 export default async function fetchQuiz(
 	QuizFormValues: TFormValues | null,
 ): Promise<TQuiz> {
@@ -90,6 +90,11 @@ export default async function fetchQuiz(
 					}, 5500);
 				});
 			} else if (error.message === "Token empty") {
+				attempts++;
+				if (attempts > 1)
+					throw new Error(
+						"There are no more questions in this category.",
+					);
 				console.warn("Token empty, resetting token");
 				const sendReset = await fetch(
 					`https://opentdb.com/api_token.php?command=reset&token=${token}`,

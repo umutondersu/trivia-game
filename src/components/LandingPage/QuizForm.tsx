@@ -18,35 +18,56 @@ import {
 } from "../ui/select";
 import { Input } from "../ui/input";
 import { FormSchema, TFormValues } from "../../lib/definitions";
-import { difficultyAtom, quizFormAtom } from "../../lib/atoms/LandingPage";
-import { useSetAtom, useAtom } from "jotai";
+import { difficultyAtom } from "../../lib/atoms/LandingPage";
+import { useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { startTransition, useEffect } from "react";
+import { startTransition } from "react";
 import { Dice5 } from "lucide-react";
+import { QuizAtom } from "../../lib/atoms/Quiz";
+import fetchQuiz from "../../lib/data";
+import { useToast } from "../ui/use-toast";
 
 export default function QuizForm() {
-	const [QuizForm, setQuizForm] = useAtom(quizFormAtom);
+	const setQuiz = useSetAtom(QuizAtom);
 	const setPersistentdifficulty = useSetAtom(difficultyAtom);
+	const { toast } = useToast();
 	const navigate = useNavigate();
 
 	const form = useForm<TFormValues>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
-			// @ts-expect-error
+			// @ts-expect-error stupid zod coercing forced my hand
 			numberOfQuestions: "",
 		},
 	});
 
-	function onSubmit(data: TFormValues) {
-		setQuizForm(data);
-		setPersistentdifficulty(data.difficulty);
-	}
-
-	useEffect(() => {
-		if (QuizForm) {
+	const onSubmit = async (data: TFormValues) => {
+		try {
+			const request = await fetchQuiz(data);
+			setQuiz(request);
+			setPersistentdifficulty(data.difficulty);
 			startTransition(() => navigate("/quiz"));
+		} catch (error: any) {
+			let message = {
+				title: "Something went wrong!",
+				description: error.message,
+			};
+			if (
+				error.message ===
+				"There are no more questions in this category."
+			) {
+				message = {
+					title: "No Questions left!",
+					description:
+						"There are no more questions with the current parameters.",
+				};
+			}
+			toast({
+				variant: "destructive",
+				...message,
+			});
 		}
-	}, [QuizForm]);
+	};
 
 	const handleRandomize = () => {
 		form.setValue(
@@ -61,7 +82,7 @@ export default function QuizForm() {
 
 	return (
 		<>
-			{!QuizForm ? (
+			{!form.formState.isSubmitting ? (
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
@@ -83,6 +104,9 @@ export default function QuizForm() {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
+												{/* <SelectItem value="">
+													Any
+												</SelectItem> */}
 												<SelectItem value="easy">
 													Easy
 												</SelectItem>
@@ -120,6 +144,9 @@ export default function QuizForm() {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
+												{/* <SelectItem value="0">
+													Any
+												</SelectItem> */}
 												<SelectItem value="1">
 													Entertainment: Books
 												</SelectItem>

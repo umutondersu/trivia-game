@@ -12,7 +12,7 @@ import {
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { ScoreTable } from "../lib/definitions";
-import { difficultyAtom, quizFormAtom } from "../lib/atoms/LandingPage";
+import { difficultyAtom } from "../lib/atoms/LandingPage";
 import { scoreAtom } from "../lib/atoms/Score";
 
 function Quiz() {
@@ -21,7 +21,6 @@ function Quiz() {
 	const QuestionCount = useAtomValue(QuestionCountAtom);
 	const difficulty = useAtomValue(difficultyAtom);
 	const setScore = useSetAtom(scoreAtom);
-	const setQuizForm = useSetAtom(quizFormAtom);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -45,10 +44,6 @@ function Quiz() {
 			}, 5000);
 		}
 	}, [answered]);
-
-	useEffect(() => {
-		setQuizForm(null);
-	}, []);
 
 	return (
 		<PageContainer className="justify-evenly">

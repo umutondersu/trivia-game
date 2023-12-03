@@ -13,6 +13,7 @@ export default function Score() {
 
 	useEffect(() => {
 		localStorage.removeItem("DIFFICULTY");
+		localStorage.removeItem("QUIZ");
 	}, []);
 
 	const handleShare = () => {
