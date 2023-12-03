@@ -39,6 +39,7 @@ export default async function fetchQuiz(
 	if (!QuizFormValues) throw new Error("No form values");
 	const { difficulty, category, numberOfQuestions } = QuizFormValues;
 	const token = await fetchToken();
+
 	try {
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 		const response = await fetch(
@@ -47,7 +48,7 @@ export default async function fetchQuiz(
 
 		const rawdata = QuizSchema.safeParse(await response.json());
 		if (!rawdata.success) {
-			console.log(rawdata.error);
+			console.warn(rawdata.error);
 			throw new Error("response has an invalid format");
 		}
 
@@ -105,6 +106,17 @@ export default async function fetchQuiz(
 						resolve(fetchQuiz(QuizFormValues));
 					}, 5500);
 				});
+			} else if (error.message === "Token not found") {
+				console.warn("Token not found, receiving new token");
+				sessionStorage.removeItem("TOKEN");
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(fetchQuiz(QuizFormValues));
+					}, 5500);
+				});
+			} else if (error.message === "Invalid parameters") {
+				console.warn("Invalid parameters?");
+				throw new Error("Invalid parameters");
 			}
 			throw new Error(error.message);
 		} else if (error && typeof error === "object" && "message" in error)
