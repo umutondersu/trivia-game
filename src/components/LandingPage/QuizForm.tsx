@@ -21,7 +21,7 @@ import { FormSchema, TFormValues } from "../../lib/definitions";
 import { difficultyAtom } from "../../lib/atoms/LandingPage";
 import { useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { startTransition } from "react";
+import { startTransition, useEffect } from "react";
 import { Dice5 } from "lucide-react";
 import { QuizAtom } from "../../lib/atoms/Quiz";
 import fetchQuiz from "../../lib/data";
@@ -68,7 +68,9 @@ export default function QuizForm() {
 			});
 		}
 	};
-
+	useEffect(() => {
+		setQuiz(() => null);
+	}, []);
 	const handleRandomize = () => {
 		form.setValue(
 			"difficulty",
@@ -76,7 +78,7 @@ export default function QuizForm() {
 				Math.floor(Math.random() * 3)
 			] as TFormValues["difficulty"],
 		);
-		form.setValue("category", Math.floor(Math.random() * 23) + 1);
+		form.setValue("category", Math.floor(Math.random() * 24) + 9);
 		form.setValue("numberOfQuestions", Math.floor(Math.random() * 50) + 1);
 	};
 
@@ -147,75 +149,78 @@ export default function QuizForm() {
 												{/* <SelectItem value="0">
 													Any
 												</SelectItem> */}
-												<SelectItem value="1">
+												<SelectItem value="9">
+													General Knowledge
+												</SelectItem>
+												<SelectItem value="10">
 													Entertainment: Books
 												</SelectItem>
-												<SelectItem value="2">
+												<SelectItem value="11">
 													Entertainment: Film
 												</SelectItem>
-												<SelectItem value="3">
+												<SelectItem value="12">
 													Entertainment: Music
 												</SelectItem>
-												<SelectItem value="4">
+												<SelectItem value="13">
 													Entertainment: Musicals
 													&amp; Theatres
 												</SelectItem>
-												<SelectItem value="5">
+												<SelectItem value="14">
 													Entertainment: Television
 												</SelectItem>
-												<SelectItem value="6">
+												<SelectItem value="15">
 													Entertainment: Video Games
 												</SelectItem>
-												<SelectItem value="7">
+												<SelectItem value="16">
 													Entertainment: Board Games
 												</SelectItem>
-												<SelectItem value="8">
+												<SelectItem value="17">
 													Science & Nature
 												</SelectItem>
-												<SelectItem value="9">
+												<SelectItem value="18">
 													Science: Computers
 												</SelectItem>
-												<SelectItem value="10">
+												<SelectItem value="19">
 													Science: Mathematics
 												</SelectItem>
-												<SelectItem value="11">
+												<SelectItem value="20">
 													Mythology
 												</SelectItem>
-												<SelectItem value="12">
+												<SelectItem value="21">
 													Sports
 												</SelectItem>
-												<SelectItem value="13">
+												<SelectItem value="22">
 													Geography
 												</SelectItem>
-												<SelectItem value="14">
+												<SelectItem value="23">
 													History
 												</SelectItem>
-												<SelectItem value="15">
+												<SelectItem value="24">
 													Politics
 												</SelectItem>
-												<SelectItem value="16">
+												<SelectItem value="25">
 													Art
 												</SelectItem>
-												<SelectItem value="17">
+												<SelectItem value="26">
 													Celebrities
 												</SelectItem>
-												<SelectItem value="18">
+												<SelectItem value="27">
 													Animals
 												</SelectItem>
-												<SelectItem value="19">
+												<SelectItem value="28">
 													Vehicles
 												</SelectItem>
-												<SelectItem value="20">
+												<SelectItem value="29">
 													Entertainment: Comics
 												</SelectItem>
-												<SelectItem value="21">
+												<SelectItem value="30">
 													Science: Gadgets
 												</SelectItem>
-												<SelectItem value="22">
+												<SelectItem value="31">
 													Entertainment: Japanese
 													Anime & Manga
 												</SelectItem>
-												<SelectItem value="23">
+												<SelectItem value="32">
 													Entertainment: Cartoon &
 													Animations
 												</SelectItem>
