@@ -87,7 +87,7 @@ export default function QuizForm() {
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
 						className="flex flex-col">
-						<div className="mx-5 mb-20 mt-3 flex max-h-60 flex-auto flex-col justify-evenly sm:mx-10 md:-mx-36 md:-mt-20 md:flex-row">
+						<div className="mx-5 mb-20 mt-3 flex max-h-60 flex-auto flex-col justify-evenly sm:mx-10 md:-mx-32 md:-mt-20 md:flex-row">
 							<FormField
 								control={form.control}
 								name="difficulty"
