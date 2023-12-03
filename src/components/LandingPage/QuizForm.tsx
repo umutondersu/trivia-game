@@ -259,7 +259,7 @@ export default function QuizForm() {
 					</form>
 				</Form>
 			) : (
-				<div className="flex flex-col items-center justify-center">
+				<div className="mx-5 mb-20 mt-20 flex max-h-60 flex-auto flex-col items-center justify-center sm:mx-10 md:-mx-36 md:-mb-5 md:-mt-20">
 					<div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
 					<p className="text-2xl text-gray-900">Loading...</p>
 				</div>
