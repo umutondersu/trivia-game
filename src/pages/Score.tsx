@@ -19,9 +19,11 @@ export default function Score() {
 	const handleShare = () => {
 		toast({
 			title: "Score Copied!",
-			description: "Just paste it anywhere to share your it!",
+			description: "Just paste it anywhere to share it!",
 		});
-		navigator.clipboard.writeText(`I scored ${Score} on the trivia game!`);
+		navigator.clipboard.writeText(
+			`I scored ${Score} on the trivia game! Try to beat my score at https://github.com/umutondersu/trivia-game`,
+		);
 	};
 
 	const ClassName = "md:text-2xl md:w-60 w-52 h-28 text-xl";
