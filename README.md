@@ -1,27 +1,34 @@
-# React + TypeScript + Vite
+# Trivia Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A trivia game Frontend Application Built with React + Vite. the Open Trivia Database API is used as the source of questions.
 
-Currently, two official plugins are available:
+## How to play
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   - Choose your game parameters: Difficulty, Topic, and Number of Questions.
+   - You will be presented with multiple choice questions based on the parameters you chose.
+   - Answer the questions to the best of your ability.
+   - At the end of the game, you can share your score, start a new game, or keep playing with your recent score.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   - Fully Responsive
+   - Dark and Light Mode
+   - Sopihsticated Data Fetching with error handling
+   - Multi Page
+   - Reactive UI
+   - Intermediary Loading States
+   - Folder Structure and File Naming Conventions
+   - Custom Hooks
+  
+## Techonolgies Used
+   - React + Vite
+   - Jotai (State Management)
+   - TypeScript
+   - TailwindCSS
+   - Shadcn UI Styled Components
+   - Radix-UI Components
+   - Lucide React Icons
+   - React Router
+   - Zod (Data Validation)
+   - React Hook Form
+   - Clsx and Tailwind Merge for Conditional Classes
