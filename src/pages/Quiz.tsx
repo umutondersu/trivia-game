@@ -36,7 +36,7 @@ export default function Quiz() {
 			setTimeout(() => {
 				if (QuestionNumber === QuestionCount - 1) {
 					setIsAnswered({ answered: false, correct: false });
-					navigate("/score", { replace: true });
+					navigate("/trivia-game/score", { replace: true });
 					return;
 				}
 				setQuestionNumber(QuestionNumber + 1);

@@ -46,7 +46,7 @@ export default function QuizForm() {
 			const request = await fetchQuiz(data);
 			setQuiz(request);
 			setPersistentdifficulty(data.difficulty);
-			startTransition(() => navigate("/quiz"));
+			startTransition(() => navigate("/trivia-game/quiz"));
 		} catch (error: any) {
 			toast({
 				variant: "destructive",

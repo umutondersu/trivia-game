@@ -38,7 +38,7 @@ export default function Score() {
 					variant="secondary"
 					onClick={() => {
 						setScore(0);
-						navigate("/");
+						navigate("/trivia-game/");
 					}}
 					className={ClassName}>
 					Play again! <br /> (Reset your score)
@@ -52,7 +52,7 @@ export default function Score() {
 				<Button
 					variant="secondary"
 					onClick={() => {
-						navigate("/");
+						navigate("/trivia-game/");
 					}}
 					className={ClassName}>
 					Keep playing! <br /> (Keep your score)
