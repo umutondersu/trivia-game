@@ -69,6 +69,8 @@ export default function QuizForm() {
 		);
 		form.setValue("category", Math.floor(Math.random() * 24) + 9);
 		form.setValue("numberOfQuestions", Math.floor(Math.random() * 50) + 1);
+
+		form.trigger();
 	};
 
 	return (
@@ -86,7 +88,7 @@ export default function QuizForm() {
 									<FormItem className="basis-2/12">
 										<FormLabel>Difficulty</FormLabel>
 										<Select
-											key={form.watch("difficulty")}
+											key={field.value}
 											onValueChange={field.onChange}
 											defaultValue={field.value}>
 											<FormControl>
@@ -117,7 +119,7 @@ export default function QuizForm() {
 									<FormItem className="basis-2/12">
 										<FormLabel>Category</FormLabel>
 										<Select
-											key={form.watch("category")}
+											key={field.value}
 											onValueChange={(value) =>
 												field.onChange(Number(value))
 											}
