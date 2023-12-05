@@ -26,7 +26,7 @@ export default function Score() {
 		);
 	};
 
-	const ClassName = "md:text-2xl md:w-60 w-52 h-28 text-xl";
+	const ClassName = "md:text-2xl md:w-64 w-52 h-28 text-xl font-bold";
 	return (
 		<PageContainer className="justify-around align-middle">
 			<h1 className=" self-center text-2xl font-extrabold">
@@ -41,7 +41,7 @@ export default function Score() {
 						navigate("/trivia-game/");
 					}}
 					className={ClassName}>
-					Play again! <br /> (Reset your score)
+					Play again!
 				</Button>
 				<Button
 					variant="secondary"
