@@ -32,7 +32,11 @@ export default function Quiz() {
 								difficulty as "easy" | "medium" | "hard"
 							] + prev,
 				  )
-				: setScore((prev) => prev + ScoreTable.incorrect);
+				: setScore((prev) =>
+						prev + ScoreTable.incorrect < 0
+							? 0
+							: prev + ScoreTable.incorrect,
+				  );
 			setTimeout(() => {
 				if (QuestionNumber === QuestionCount - 1) {
 					setIsAnswered({ answered: false, correct: false });
