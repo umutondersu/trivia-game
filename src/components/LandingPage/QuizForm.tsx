@@ -77,7 +77,7 @@ export default function QuizForm() {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="flex flex-col">
+						className="relative flex flex-col">
 						<div className="mx-5 mb-20 mt-3 flex max-h-60 flex-auto flex-col justify-evenly sm:mx-10 md:-mx-32 md:-mt-20 md:flex-row">
 							<FormField
 								control={form.control}
@@ -95,9 +95,6 @@ export default function QuizForm() {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												{/* <SelectItem value="">
-													Any
-												</SelectItem> */}
 												<SelectItem value="easy">
 													Easy
 												</SelectItem>
@@ -241,7 +238,7 @@ export default function QuizForm() {
 						</div>
 						<Button
 							type="button"
-							className="absolute bottom-7 left-8 h-10 w-10 bg-green-500 p-2 hover:bg-green-500"
+							className="absolute bottom-9 left-8 h-10 w-10 bg-green-500 p-2 hover:bg-green-500"
 							onClick={handleRandomize}>
 							<Dice5 strokeWidth={3} size={35} />
 						</Button>
