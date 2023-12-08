@@ -13,7 +13,7 @@ A trivia game Frontend Application Built with React + Vite. the Open Trivia Data
 
    - Fully Responsive
    - Dark and Light Mode
-   - Sopihsticated Data Fetching with error handling
+   - Sophisticated Data Fetching with Error Handling
    - Multi Page
    - Reactive UI
    - Intermediary Loading States
