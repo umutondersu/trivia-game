@@ -20,7 +20,7 @@ A trivia game Frontend Application Built with React + Vite. the Open Trivia Data
    - Folder Structure and File Naming Conventions
    - Custom Hooks
   
-## Techonolgies Used
+## Technologies Used
    - React + Vite
    - Jotai (State Management)
    - TypeScript
