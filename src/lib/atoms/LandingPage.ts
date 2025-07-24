@@ -1,6 +1,6 @@
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage } from 'jotai/utils';
 
-export const difficultyAtom = atomWithStorage<"easy" | "medium" | "hard" | "">(
-	"DIFFICULTY",
-	"",
+export const difficultyAtom = atomWithStorage<'easy' | 'medium' | 'hard' | ''>(
+  'DIFFICULTY',
+  ''
 );

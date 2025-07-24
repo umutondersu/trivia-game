@@ -1,3 +1,3 @@
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage } from 'jotai/utils';
 
-export const ProgressBarAtom = atomWithStorage("PROGRESS", 0);
+export const ProgressBarAtom = atomWithStorage('PROGRESS', 0);

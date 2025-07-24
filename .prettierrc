@@ -1,7 +1,0 @@
-{
-  "tabWidth": 4,
-  "useTabs": true,
-  "bracketSameLine": true,
-  "htmlWhitespaceSensitivity": "ignore",
-  "plugins": ["prettier-plugin-tailwindcss"]
-}
